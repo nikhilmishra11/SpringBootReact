@@ -1,15 +1,15 @@
-package com.nik.wsr.util;
+package com.nat.wsr.util;
 
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.nik.wsr.model.Poll;
-import com.nik.wsr.model.User;
-import com.nik.wsr.payload.ChoiceResponse;
-import com.nik.wsr.payload.PollResponse;
-import com.nik.wsr.payload.UserSummary;
+import com.nat.wsr.model.Poll;
+import com.nat.wsr.model.User;
+import com.nat.wsr.payload.ChoiceResponse;
+import com.nat.wsr.payload.PollResponse;
+import com.nat.wsr.payload.UserSummary;
 
 public class ModelMapper {
 

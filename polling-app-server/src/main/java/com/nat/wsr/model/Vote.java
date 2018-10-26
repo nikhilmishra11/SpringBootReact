@@ -1,8 +1,8 @@
-package com.nik.wsr.model;
+package com.nat.wsr.model;
 
 import javax.persistence.*;
 
-import com.nik.wsr.model.audit.DateAudit;
+import com.nat.wsr.model.audit.DateAudit;
 
 @Entity
 @Table(name = "votes", uniqueConstraints = {

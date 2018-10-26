@@ -1,4 +1,4 @@
-package com.nik.wsr.model.audit;
+package com.nat.wsr.model.audit;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;

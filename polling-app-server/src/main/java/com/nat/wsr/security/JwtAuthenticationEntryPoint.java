@@ -1,4 +1,4 @@
-package com.nik.wsr.security;
+package com.nat.wsr.security;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

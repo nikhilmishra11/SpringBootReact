@@ -1,10 +1,10 @@
-package com.nik.wsr.web.repository;
+package com.nat.wsr.web.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.nik.wsr.model.Role;
-import com.nik.wsr.model.RoleName;
+import com.nat.wsr.model.Role;
+import com.nat.wsr.model.RoleName;
 
 import java.util.Optional;
 

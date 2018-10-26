@@ -1,4 +1,4 @@
-package com.nik.wsr.model;
+package com.nat.wsr.model;
 
 import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;

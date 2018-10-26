@@ -1,4 +1,4 @@
-package com.nik.wsr.web.service;
+package com.nat.wsr.web.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,19 +10,19 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.nik.wsr.exception.BadRequestException;
-import com.nik.wsr.exception.ResourceNotFoundException;
-import com.nik.wsr.model.*;
-import com.nik.wsr.payload.PagedResponse;
-import com.nik.wsr.payload.PollRequest;
-import com.nik.wsr.payload.PollResponse;
-import com.nik.wsr.payload.VoteRequest;
-import com.nik.wsr.security.UserPrincipal;
-import com.nik.wsr.util.AppConstants;
-import com.nik.wsr.util.ModelMapper;
-import com.nik.wsr.web.repository.PollRepository;
-import com.nik.wsr.web.repository.UserRepository;
-import com.nik.wsr.web.repository.VoteRepository;
+import com.nat.wsr.exception.BadRequestException;
+import com.nat.wsr.exception.ResourceNotFoundException;
+import com.nat.wsr.model.*;
+import com.nat.wsr.payload.PagedResponse;
+import com.nat.wsr.payload.PollRequest;
+import com.nat.wsr.payload.PollResponse;
+import com.nat.wsr.payload.VoteRequest;
+import com.nat.wsr.security.UserPrincipal;
+import com.nat.wsr.util.AppConstants;
+import com.nat.wsr.util.ModelMapper;
+import com.nat.wsr.web.repository.PollRepository;
+import com.nat.wsr.web.repository.UserRepository;
+import com.nat.wsr.web.repository.VoteRepository;
 
 import java.time.Duration;
 import java.time.Instant;

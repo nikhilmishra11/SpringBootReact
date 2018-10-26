@@ -1,4 +1,4 @@
-package com.nik.wsr.payload;
+package com.nat.wsr.payload;
 
 /**
  * Created by rajeevkumarsingh on 19/08/17.

@@ -1,4 +1,4 @@
-package com.nik.wsr.web.controller;
+package com.nat.wsr.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,17 +14,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.nik.wsr.exception.AppException;
-import com.nik.wsr.model.Role;
-import com.nik.wsr.model.RoleName;
-import com.nik.wsr.model.User;
-import com.nik.wsr.payload.ApiResponse;
-import com.nik.wsr.payload.JwtAuthenticationResponse;
-import com.nik.wsr.payload.LoginRequest;
-import com.nik.wsr.payload.SignUpRequest;
-import com.nik.wsr.security.JwtTokenProvider;
-import com.nik.wsr.web.repository.RoleRepository;
-import com.nik.wsr.web.repository.UserRepository;
+import com.nat.wsr.exception.AppException;
+import com.nat.wsr.model.Role;
+import com.nat.wsr.model.RoleName;
+import com.nat.wsr.model.User;
+import com.nat.wsr.payload.ApiResponse;
+import com.nat.wsr.payload.JwtAuthenticationResponse;
+import com.nat.wsr.payload.LoginRequest;
+import com.nat.wsr.payload.SignUpRequest;
+import com.nat.wsr.security.JwtTokenProvider;
+import com.nat.wsr.web.repository.RoleRepository;
+import com.nat.wsr.web.repository.UserRepository;
 
 import javax.validation.Valid;
 import java.net.URI;

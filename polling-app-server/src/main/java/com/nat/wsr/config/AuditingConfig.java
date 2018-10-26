@@ -1,4 +1,4 @@
-package com.nik.wsr.config;
+package com.nat.wsr.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,7 +8,7 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import com.nik.wsr.security.UserPrincipal;
+import com.nat.wsr.security.UserPrincipal;
 
 import java.util.Optional;
 

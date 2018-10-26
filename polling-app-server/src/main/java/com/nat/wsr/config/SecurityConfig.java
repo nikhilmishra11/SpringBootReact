@@ -1,4 +1,4 @@
-package com.nik.wsr.config;
+package com.nat.wsr.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,9 +16,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.nik.wsr.security.CustomUserDetailsService;
-import com.nik.wsr.security.JwtAuthenticationEntryPoint;
-import com.nik.wsr.security.JwtAuthenticationFilter;
+import com.nat.wsr.security.CustomUserDetailsService;
+import com.nat.wsr.security.JwtAuthenticationEntryPoint;
+import com.nat.wsr.security.JwtAuthenticationFilter;
 
 
 /**

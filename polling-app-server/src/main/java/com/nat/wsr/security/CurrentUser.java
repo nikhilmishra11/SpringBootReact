@@ -1,4 +1,4 @@
-package com.nik.wsr.security;
+package com.nat.wsr.security;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 

@@ -1,4 +1,4 @@
-package com.nik.wsr.security;
+package com.nat.wsr.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,9 +7,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.nik.wsr.exception.ResourceNotFoundException;
-import com.nik.wsr.model.User;
-import com.nik.wsr.web.repository.UserRepository;
+import com.nat.wsr.exception.ResourceNotFoundException;
+import com.nat.wsr.model.User;
+import com.nat.wsr.web.repository.UserRepository;
 
 /**
  * Created by rajeevkumarsingh on 02/08/17.

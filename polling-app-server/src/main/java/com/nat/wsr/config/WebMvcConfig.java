@@ -1,4 +1,4 @@
-package com.nik.wsr.config;
+package com.nat.wsr.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

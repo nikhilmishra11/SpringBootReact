@@ -1,4 +1,4 @@
-package com.nik.wsr;
+package com.nat.wsr;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

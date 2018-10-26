@@ -1,4 +1,4 @@
-package com.nik.wsr.web.repository;
+package com.nat.wsr.web.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -6,7 +6,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.nik.wsr.model.Poll;
+import com.nat.wsr.model.Poll;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package com.nik.wsr.model;
+package com.nat.wsr.model;
 
 /**
  * Created by rajeevkumarsingh on 07/12/17.

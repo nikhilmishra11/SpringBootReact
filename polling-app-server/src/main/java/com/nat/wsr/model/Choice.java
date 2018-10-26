@@ -1,4 +1,4 @@
-package com.nik.wsr.model;
+package com.nat.wsr.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

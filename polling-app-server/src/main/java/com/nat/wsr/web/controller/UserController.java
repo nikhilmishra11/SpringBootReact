@@ -1,4 +1,4 @@
-package com.nik.wsr.web.controller;
+package com.nat.wsr.web.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,16 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import com.nik.wsr.exception.ResourceNotFoundException;
-import com.nik.wsr.model.User;
-import com.nik.wsr.payload.*;
-import com.nik.wsr.security.CurrentUser;
-import com.nik.wsr.security.UserPrincipal;
-import com.nik.wsr.util.AppConstants;
-import com.nik.wsr.web.repository.PollRepository;
-import com.nik.wsr.web.repository.UserRepository;
-import com.nik.wsr.web.repository.VoteRepository;
-import com.nik.wsr.web.service.PollService;
+import com.nat.wsr.exception.ResourceNotFoundException;
+import com.nat.wsr.model.User;
+import com.nat.wsr.payload.*;
+import com.nat.wsr.security.CurrentUser;
+import com.nat.wsr.security.UserPrincipal;
+import com.nat.wsr.util.AppConstants;
+import com.nat.wsr.web.repository.PollRepository;
+import com.nat.wsr.web.repository.UserRepository;
+import com.nat.wsr.web.repository.VoteRepository;
+import com.nat.wsr.web.service.PollService;
 
 @RestController
 @RequestMapping("/api")

@@ -1,4 +1,4 @@
-package com.nik.wsr.security;
+package com.nat.wsr.security;
 
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;

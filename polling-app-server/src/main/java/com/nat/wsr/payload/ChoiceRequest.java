@@ -1,4 +1,4 @@
-package com.nik.wsr.payload;
+package com.nat.wsr.payload;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;

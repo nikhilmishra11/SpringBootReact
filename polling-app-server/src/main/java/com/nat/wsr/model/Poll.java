@@ -1,10 +1,10 @@
-package com.nik.wsr.model;
+package com.nat.wsr.model;
 
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import com.nik.wsr.model.audit.UserDateAudit;
+import com.nat.wsr.model.audit.UserDateAudit;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

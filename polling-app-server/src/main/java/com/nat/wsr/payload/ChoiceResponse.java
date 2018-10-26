@@ -1,4 +1,4 @@
-package com.nik.wsr.payload;
+package com.nat.wsr.payload;
 
 public class ChoiceResponse {
     private long id;

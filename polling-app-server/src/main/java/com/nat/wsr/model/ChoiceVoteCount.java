@@ -1,4 +1,4 @@
-package com.nik.wsr.model;
+package com.nat.wsr.model;
 
 public class ChoiceVoteCount {
     private Long choiceId;

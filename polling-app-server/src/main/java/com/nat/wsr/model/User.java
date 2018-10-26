@@ -1,8 +1,8 @@
-package com.nik.wsr.model;
+package com.nat.wsr.model;
 
 import org.hibernate.annotations.NaturalId;
 
-import com.nik.wsr.model.audit.DateAudit;
+import com.nat.wsr.model.audit.DateAudit;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;

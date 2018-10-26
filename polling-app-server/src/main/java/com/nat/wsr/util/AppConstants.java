@@ -1,4 +1,4 @@
-package com.nik.wsr.util;
+package com.nat.wsr.util;
 
 public interface AppConstants {
     String DEFAULT_PAGE_NUMBER = "0";

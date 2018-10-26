@@ -1,7 +1,7 @@
-package com.nik.wsr.security;
+package com.nat.wsr.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.nik.wsr.model.User;
+import com.nat.wsr.model.User;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
