@@ -41,6 +41,24 @@ export function createPoll(pollData) {
     });
 }
 
+export function createReport(reportData) {
+    return request({
+        url: API_BASE_URL + "/report",
+        method: 'POST',
+        body: JSON.stringify(reportData)         
+    });
+}
+
+export function downloadReport() {
+    return request({
+        url: API_BASE_URL + "/report/download",
+        method: 'POST',
+        body:''
+    });
+}
+
+
+
 export function castVote(voteData) {
     return request({
         url: API_BASE_URL + "/polls/" + voteData.pollId + "/votes",

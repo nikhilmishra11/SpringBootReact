@@ -23,23 +23,44 @@ class AppHeader extends Component {
     render() {
         let menuItems;
         if(this.props.currentUser) {
-          menuItems = [
-            <Menu.Item key="/">
-              <Link to="/">
-                <Icon type="home" className="nav-icon" />
+          if(this.props.currentUser.name=="manager"){
+            menuItems = [
+              <Menu.Item key="/download/report">
+                <Link to="/download/report">
+                  <Icon type="home" className="nav-icon" />
+                </Link>
+              </Menu.Item>,
+            <Menu.Item key="/profile" className="profile-menu">
+                  <ProfileDropdownMenu 
+                    currentUser={this.props.currentUser} 
+                    handleMenuClick={this.handleMenuClick}/>
+              </Menu.Item>
+              
+            ]; 
+
+          }else{
+
+            menuItems = [
+              <Menu.Item key="/">
+                <Link to="/">
+                  <Icon type="home" className="nav-icon" />
+                </Link>
+              </Menu.Item>,
+              <Menu.Item key="/poll/new">
+              <Link to="/poll/new">
+                <img src={pollIcon} alt="poll" className="poll-icon" />
               </Link>
             </Menu.Item>,
-            <Menu.Item key="/poll/new">
-            <Link to="/poll/new">
-              <img src={pollIcon} alt="poll" className="poll-icon" />
-            </Link>
-          </Menu.Item>,
-          <Menu.Item key="/profile" className="profile-menu">
-                <ProfileDropdownMenu 
-                  currentUser={this.props.currentUser} 
-                  handleMenuClick={this.handleMenuClick}/>
-            </Menu.Item>
-          ]; 
+            <Menu.Item key="/profile" className="profile-menu">
+                  <ProfileDropdownMenu 
+                    currentUser={this.props.currentUser} 
+                    handleMenuClick={this.handleMenuClick}/>
+              </Menu.Item>
+              
+            ]; 
+
+          }
+          
         } else {
           menuItems = [
             <Menu.Item key="/login">

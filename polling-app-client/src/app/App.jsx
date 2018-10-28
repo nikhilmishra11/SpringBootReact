@@ -11,6 +11,7 @@ import { getCurrentUser } from '../util/APIUtils';
 import { ACCESS_TOKEN } from '../constants';
 
 import TaskList from '../task/TaskList';
+import DownloadReport from  '../task/DownloadReport';
 import NewTask from '../task/NewTask';
 import Login from '../user/login/Login';
 import Signup from '../user/signup/Signup';
@@ -125,6 +126,7 @@ class App extends React.Component {
                 render={(props) => <Profile isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}>
               </Route>
               <PrivateRoute authenticated={this.state.isAuthenticated} path="/poll/new" component={NewTask} handleLogout={this.handleLogout}></PrivateRoute>
+              <PrivateRoute authenticated={this.state.isAuthenticated} path="/download/report" component={DownloadReport} handleLogout={this.handleLogout}></PrivateRoute>
               <Route component={NotFound}></Route>
             </Switch>
           </div>

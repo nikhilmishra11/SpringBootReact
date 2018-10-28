@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { createPoll } from '../util/APIUtils';
+import { createReport } from '../util/APIUtils';
 import { MAX_CHOICES, POLL_QUESTION_MAX_LENGTH, POLL_CHOICE_MAX_LENGTH } from '../constants';
 import './NewTask.css';
 import { Form, Input, Button, Icon, Select, Col, notification } from 'antd';
@@ -24,12 +25,41 @@ class NewTask extends Component {
             pollLength: {
                 days: 1,
                 hours: 0
+            },
+            keyUpdateValue: {
+                text: ''
+            },
+            owner: {
+                text: ''
+            },
+            task: {
+                text: ''
+            },
+            actualStartDate: {
+                text: ''
+            },
+            actualEndDate: {
+                text: ''
+            },
+            status: {
+                text: ''
+            },
+            remarks: {
+                text: ''
             }
+
         };
         this.addChoice = this.addChoice.bind(this);
         this.removeChoice = this.removeChoice.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
         this.handleQuestionChange = this.handleQuestionChange.bind(this);
+        this.handleKeyUpdateChange = this.handleKeyUpdateChange.bind(this);
+        this.handleTaskChange = this.handleTaskChange.bind(this);
+        this.handleActualStartDateChange = this.handleActualStartDateChange.bind(this);
+        this.handleActualEndDateChange = this.handleActualEndDateChange.bind(this);
+        this.handleStatusChange = this.handleStatusChange.bind(this);
+        this.handleRemarksChange = this.handleRemarksChange.bind(this);
         this.handleChoiceChange = this.handleChoiceChange.bind(this);
         this.handlePollDaysChange = this.handlePollDaysChange.bind(this);
         this.handlePollHoursChange = this.handlePollHoursChange.bind(this);
@@ -53,16 +83,31 @@ class NewTask extends Component {
     }
 
     handleSubmit(event) {
+        console.log('inside handle submit event');
         event.preventDefault();
-        const pollData = {
-            question: this.state.question.text,
-            choices: this.state.choices.map(choice => {
-                return { text: choice.text }
-            }),
-            pollLength: this.state.pollLength
+        // const pollData = {
+        //     question: this.state.question.text,
+        //     choices: this.state.choices.map(choice => {
+        //         return { text: choice.text }
+        //     }),
+        //     pollLength: this.state.pollLength
+        // };
+
+        const reportData = {
+            keyUpdateValue: this.state.keyUpdateValue.text,
+            owner: this.state.owner.text,
+            task: this.state.task.text,
+            actualStartDate: this.state.actualStartDate.text,
+            actualEndDate: this.state.actualEndDate.text,
+            status: this.state.status.text,
+            remarks: this.state.remarks.text
+            
         };
 
-        createPoll(pollData)
+       
+        console.log(reportData);
+            
+        createReport(reportData)
             .then(response => {
                 this.props.history.push("/");
             }).catch(error => {
@@ -75,7 +120,29 @@ class NewTask extends Component {
                     });
                 }
             });
+
+
     }
+
+    validateInput = (inputText) => {
+        if (inputText.length === 0) {
+            return {
+                validateStatus: 'error',
+                errorMsg: 'Please enter your question!'
+            }
+        } else if (inputText.length > POLL_QUESTION_MAX_LENGTH) {
+            return {
+                validateStatus: 'error',
+                errorMsg: `Question is too long (Maximum ${POLL_QUESTION_MAX_LENGTH} characters allowed)`
+            }
+        } else {
+            return {
+                validateStatus: 'success',
+                errorMsg: null
+            }
+        }
+    }
+
 
     validateQuestion = (questionText) => {
         if (questionText.length === 0) {
@@ -96,6 +163,36 @@ class NewTask extends Component {
         }
     }
 
+    validateKeyUpdate = (keyUpdateValueText) => {
+        if (keyUpdateValueText.length === 0) {
+            return {
+                validateStatus: 'error',
+                errorMsg: 'Please enter your question!'
+            }
+        } else if (keyUpdateValueText.length > POLL_QUESTION_MAX_LENGTH) {
+            return {
+                validateStatus: 'error',
+                errorMsg: `Question is too long (Maximum ${POLL_QUESTION_MAX_LENGTH} characters allowed)`
+            }
+        } else {
+            return {
+                validateStatus: 'success',
+                errorMsg: null
+            }
+        }
+    }
+
+    handleInputChange(event) {
+        const value = event.target.value;
+        const name = event.target.name;
+        this.setState({
+            name: {
+                text: value,
+                ...this.validateInput(value)
+            }
+        });
+    }
+
     handleQuestionChange(event) {
         const value = event.target.value;
         this.setState({
@@ -105,6 +202,73 @@ class NewTask extends Component {
             }
         });
     }
+
+    handleKeyUpdateChange(event) {
+        const value = event.target.value;
+        this.setState({
+            keyUpdateValue: {
+                text: value,
+                ...this.validateQuestion(value)
+            }
+        });
+    }
+
+    handleTaskChange(event) {
+        const value = event.target.value;
+        this.setState({
+            task: {
+                text: value,
+                ...this.validateQuestion(value)
+            }
+        });
+    }
+
+    handleActualStartDateChange(event) {
+        const value = event.target.value;
+        this.setState({
+            actualStartDate: {
+                text: value,
+                ...this.validateQuestion(value)
+            }
+        });
+    }
+
+
+    handleActualEndDateChange(event) {
+        const value = event.target.value;
+        this.setState({
+            actualEndDate: {
+                text: value,
+                ...this.validateQuestion(value)
+            }
+        });
+    }
+
+
+    handleStatusChange(event) {
+        const value = event.target.value;
+        this.setState({
+            status: {
+                text: value,
+                ...this.validateQuestion(value)
+            }
+        });
+    }
+
+
+    handleRemarksChange(event) {
+        const value = event.target.value;
+        this.setState({
+            remarks: {
+                text: value,
+                ...this.validateQuestion(value)
+            }
+        });
+    }
+
+
+
+
 
     validateChoice = (choiceText) => {
         if (choiceText.length === 0) {
@@ -169,72 +333,90 @@ class NewTask extends Component {
 
     render() {
         const choiceViews = [];
-        this.state.choices.forEach((choice, index) => {
-            choiceViews.push(<PollChoice key={index} choice={choice} choiceNumber={index} removeChoice={this.removeChoice} handleChoiceChange={this.handleChoiceChange} />);
-        });
+        // this.state.choices.forEach((choice, index) => {
+        //     choiceViews.push(<PollChoice key={index} choice={choice} choiceNumber={index} removeChoice={this.removeChoice} handleChoiceChange={this.handleChoiceChange} />);
+        // });
 
         return (
             <div className="new-poll-container">
-                <h1 className="page-title">Create Task</h1>
+                <h1 className="page-title">Create Report</h1>
                 <div className="new-poll-content">
                     <Form onSubmit={this.handleSubmit} className="create-poll-form">
-                        <FormItem validateStatus={this.state.question.validateStatus}
-                            help={this.state.question.errorMsg} className="poll-form-row">
+                    
+                        <FormItem validateStatus={this.state.keyUpdateValue.validateStatus}
+                            help={this.state.keyUpdateValue.errorMsg} className="poll-form-row">
                             <TextArea
-                                placeholder="Enter your Task"
+                                placeholder="Enter your Key Updates "
                                 style={{ fontSize: '16px' }}
                                 autosize={{ minRows: 3, maxRows: 6 }}
-                                name="question"
-                                value={this.state.question.text}
-                                onChange={this.handleQuestionChange} />
+                                name="keyUpdateValue"
+                                value={this.state.keyUpdateValue.text}
+                                onChange = {this.handleKeyUpdateChange}
+                                 />
+                        </FormItem>
+                        <FormItem validateStatus={this.state.task.validateStatus}
+                            help={this.state.task.errorMsg} className="poll-form-row">
+                            <TextArea
+                                placeholder="Enter your Task "
+                                style={{ fontSize: '16px' }}
+                                autosize={{ minRows: 3, maxRows: 6 }}
+                                name="task"
+                                value={this.state.task.text}
+                                onChange = {this.handleTaskChange}
+                                />
                         </FormItem>
                         {choiceViews}
-                        <DatePicker popperClassName="poll-form-row"
-                            selected={this.state.startDate}
-                            onChange={this.handleChange}
-                            placeholderText="Click to select a start date"
-                        />
-                        <FormItem className="poll-form-row">
-                            <Col xs={24} sm={4}>
-                                Poll length:
-                            </Col>
-                            <Col xs={24} sm={20}>
-                                <span style={{ marginRight: '18px' }}>
-                                    <Select
-                                        name="days"
-                                        defaultValue="1"
-                                        onChange={this.handlePollDaysChange}
-                                        value={this.state.pollLength.days}
-                                        style={{ width: 60 }} >
-                                        {
-                                            Array.from(Array(8).keys()).map(i =>
-                                                <Option key={i}>{i}</Option>
-                                            )
-                                        }
-                                    </Select> &nbsp;Days
-                                </span>
-                                <span>
-                                    <Select
-                                        name="hours"
-                                        defaultValue="0"
-                                        onChange={this.handlePollHoursChange}
-                                        value={this.state.pollLength.hours}
-                                        style={{ width: 60 }} >
-                                        {
-                                            Array.from(Array(24).keys()).map(i =>
-                                                <Option key={i}>{i}</Option>
-                                            )
-                                        }
-                                    </Select> &nbsp;Hours
-                                </span>
-                            </Col>
+                        <FormItem validateStatus={this.state.actualStartDate.validateStatus}
+                            help={this.state.actualStartDate.errorMsg} className="poll-form-row">
+                            <TextArea
+                                placeholder="Enter your Start Date "
+                                style={{ fontSize: '16px' }}
+                                autosize={{ minRows: 3, maxRows: 6 }}
+                                name="actualStartDate"
+                                value={this.state.actualStartDate.text}
+                                onChange = {this.handleActualStartDateChange}
+                                 />
                         </FormItem>
+                        <FormItem validateStatus={this.state.actualEndDate.validateStatus}
+                            help={this.state.actualEndDate.errorMsg} className="poll-form-row">
+                            <TextArea
+                                placeholder="Enter your End Date "
+                                style={{ fontSize: '16px' }}
+                                autosize={{ minRows: 3, maxRows: 6 }}
+                                name="actualEndDate"
+                                value={this.state.actualEndDate.text}
+                                onChange = {this.handleActualEndDateChange}
+                                 />
+                        </FormItem>
+                        <FormItem validateStatus={this.state.status.validateStatus}
+                            help={this.state.status.errorMsg} className="poll-form-row">
+                            <TextArea
+                                placeholder="Enter your  Status "
+                                style={{ fontSize: '16px' }}
+                                autosize={{ minRows: 3, maxRows: 6 }}
+                                name="status"
+                                value={this.state.status.text}
+                                onChange = {this.handleStatusChange}
+                                 />
+                        </FormItem>
+                        <FormItem validateStatus={this.state.remarks.validateStatus}
+                            help={this.state.remarks.errorMsg} className="poll-form-row">
+                            <TextArea
+                                placeholder="Enter your  Remarks "
+                                style={{ fontSize: '16px' }}
+                                autosize={{ minRows: 3, maxRows: 6 }}
+                                name="remarks"
+                                value={this.state.remarks.text}
+                                onChange = {this.handleRemarksChange}
+                                />
+                        </FormItem>
+                        
                         <FormItem className="poll-form-row">
                             <Button type="primary"
                                 htmlType="submit"
                                 size="large"
-                                disabled={this.isFormInvalid()}
-                                className="create-poll-form-button">Create Poll</Button>
+                                //disabled={this.isFormInvalid()}
+                                className="create-poll-form-button">Create Report</Button>
                         </FormItem>
                     </Form>
                 </div>
