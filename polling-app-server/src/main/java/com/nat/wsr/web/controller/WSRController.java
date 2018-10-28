@@ -18,11 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.nat.wsr.model.Poll;
+import com.nat.wsr.model.KeyUpdates;
+import com.nat.wsr.model.TaskUpdates;
 import com.nat.wsr.payload.ApiResponse;
 import com.nat.wsr.payload.PagedResponse;
-import com.nat.wsr.payload.PollRequest;
 import com.nat.wsr.payload.PollResponse;
+import com.nat.wsr.payload.ReportRequest;
 import com.nat.wsr.security.CurrentUser;
 import com.nat.wsr.security.UserPrincipal;
 import com.nat.wsr.util.AppConstants;
@@ -34,7 +35,7 @@ import com.nat.wsr.web.service.WsrAutomatorService;
  *
  */
 @RestController
-@RequestMapping("/api/Tasks")
+@RequestMapping("/api/report")
 public class WSRController {
 
 	@Autowired
@@ -42,33 +43,55 @@ public class WSRController {
 	
     private static final Logger logger = LoggerFactory.getLogger(WSRController.class);
 
-    @GetMapping
+   /* @GetMapping
     public PagedResponse<PollResponse> getTasks(@CurrentUser UserPrincipal currentUser,
                                                 @RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
                                                 @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
     	logger.info("WSRController.getTasks()");
-        return wsrAutomatorService.getAllTask(currentUser, page, size);
-    }
+        //return wsrAutomatorService.getAllTask(currentUser, page, size);
+    }*/
 
     @PostMapping
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> createTask(@Valid @RequestBody PollRequest pollRequest) {
-        Poll poll = wsrAutomatorService.createTask(pollRequest);
-
-        URI location = ServletUriComponentsBuilder
+    public ResponseEntity<?> createReport(@CurrentUser UserPrincipal currentUser,@Valid @RequestBody ReportRequest reportRequest) {
+    	
+    	KeyUpdates keyUpdate = wsrAutomatorService.writeKeyUpdate(currentUser.getId(),reportRequest);
+    	TaskUpdates taskUpdate = wsrAutomatorService.writeTaskUpdate(currentUser, reportRequest);
+    	
+    	
+        /*URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{pollId}")
-                .buildAndExpand(poll.getId()).toUri();
-
-        return ResponseEntity.created(location)
-                .body(new ApiResponse(true, "Poll Created Successfully"));
+                .buildAndExpand(keyUpdate.getId()).toUri();
+*/
+        /*return ResponseEntity.created(location)
+                .body(new ApiResponse(true, "Report Inputs Saved Successfully"));*/
+    	URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest().path("/{pollId}")
+                .buildAndExpand(keyUpdate.getId()).toUri();
+    	return ResponseEntity.created(location)
+                .body(new ApiResponse(true, "Report Inputs Saved Successfully"));
     }
 
 
-    @GetMapping("/{taskId}")
+    /*@GetMapping("/{taskId}")
     public PollResponse getPollById(@CurrentUser UserPrincipal currentUser,
                                     @PathVariable Long taskId) {
         return wsrAutomatorService.getTaskById(taskId, currentUser);
+    }*/
+    
+    
+    @PostMapping("/download")
+    public ResponseEntity<?> getReportById(@CurrentUser UserPrincipal currentUser) {
+    	Long reportId = wsrAutomatorService.getActiveReport().getId();
+        wsrAutomatorService.createReportFromTemplate(reportId);
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest().path("/{pollId}")
+                .buildAndExpand(reportId).toUri();
+    	return ResponseEntity.created(location)
+                .body(new ApiResponse(true, "Report Generated Successfully"));
     }
+    
+    
 
 
 }
