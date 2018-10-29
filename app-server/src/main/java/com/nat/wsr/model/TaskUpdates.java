@@ -1,5 +1,7 @@
 package com.nat.wsr.model;
 
+import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,7 +19,10 @@ import com.nat.wsr.model.audit.DateAudit;
     
 })
 public class TaskUpdates extends DateAudit {
-    @Id
+
+	private static final long serialVersionUID = -4110987910830419157L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
@@ -28,10 +33,10 @@ public class TaskUpdates extends DateAudit {
     private String task;
     
     
-    private String actualStartDate;
+    private Date actualStartDate;
     
     
-    private String actualEndDate;
+    private Date actualEndDate;
     
     
     private String status;
@@ -89,19 +94,19 @@ public class TaskUpdates extends DateAudit {
 		this.task = task;
 	}
 
-	public String getActualStartDate() {
+	public Date getActualStartDate() {
 		return actualStartDate;
 	}
 
-	public void setActualStartDate(String actualStartDate) {
+	public void setActualStartDate(Date actualStartDate) {
 		this.actualStartDate = actualStartDate;
 	}
 
-	public String getActualEndDate() {
+	public Date getActualEndDate() {
 		return actualEndDate;
 	}
 
-	public void setActualEndDate(String actualEndDate) {
+	public void setActualEndDate(Date actualEndDate) {
 		this.actualEndDate = actualEndDate;
 	}
 

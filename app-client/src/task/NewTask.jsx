@@ -222,23 +222,19 @@ class NewTask extends Component {
         });
     }
 
-    handleActualStartDateChange(event) {
-        const value = event.target.value;
+    handleActualStartDateChange(date) {
         this.setState({
             actualStartDate: {
-                text: value,
-                ...this.validateQuestion(value)
+                text: date._d.valueOf(),
             }
         });
     }
 
 
-    handleActualEndDateChange(event) {
-        const value = event.target.value;
+    handleActualEndDateChange(date) {
         this.setState({
             actualEndDate: {
-                text: value,
-                ...this.validateQuestion(value)
+                text: date._d.valueOf(),
             }
         });
     }
@@ -368,11 +364,13 @@ class NewTask extends Component {
                         <FormItem validateStatus={this.state.actualStartDate.validateStatus}
                             help={this.state.actualStartDate.errorMsg} className="poll-form-row">
                             <Datetime 
-                                inputProps={{ placeholder: 'Enter Actual Start Date' }}
+                                inputProps={{ placeholder: 'Enter Actual Start Date', readonly: 'true' }}
                                 dateFormat="Do MMM YYYY"
                                 timeFormat={false}
                                 className="poll-form-row wsr-date-picker"
                                 value={this.state.actualStartDate.text}
+                                onChange = {this.handleActualStartDateChange}
+                                closeOnSelect={true}
                                 />
                             {/* <TextArea
                                 placeholder="Enter Actual Start Date "
@@ -386,11 +384,13 @@ class NewTask extends Component {
                         <FormItem validateStatus={this.state.actualEndDate.validateStatus}
                             help={this.state.actualEndDate.errorMsg} className="poll-form-row">
                             <Datetime 
-                                inputProps={{ placeholder: 'Enter Actual End Date' }}
+                                inputProps={{ placeholder: 'Enter Actual End Date', readonly: 'true' }}
                                 dateFormat="Do MMM YYYY"
                                 timeFormat={false}
                                 className="poll-form-row wsr-date-picker"
                                 value={this.state.actualEndDate.text}
+                                onChange = {this.handleActualEndDateChange}
+                                closeOnSelect={true}
                                 />
                             {/* <TextArea
                                 placeholder="Enter Actual End Date "

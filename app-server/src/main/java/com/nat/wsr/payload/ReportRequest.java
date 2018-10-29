@@ -1,34 +1,25 @@
 package com.nat.wsr.payload;
 
+import java.sql.Date;
+
 import org.springframework.lang.NonNull;
 
 public class ReportRequest {
 
 	@NonNull
 	private String keyUpdateValue;
-	
 
 	private String owner;
 
-	
 	private String task;
 	
+	private Date actualStartDate;
 	
-	private String actualStartDate;
+	private Date actualEndDate;
 
-	
-	
-	private String actualEndDate;
-
-	
-	
 	private String status;
 
-	
 	private String remarks;
-
-
-
 
 
 	public String getOwner() {
@@ -51,22 +42,22 @@ public class ReportRequest {
 	}
 
 
-	public String getActualStartDate() {
+	public Date getActualStartDate() {
 		return actualStartDate;
 	}
 
 
-	public void setActualStartDate(String actualStartDate) {
+	public void setActualStartDate(Date actualStartDate) {
 		this.actualStartDate = actualStartDate;
 	}
 
 
-	public String getActualEndDate() {
+	public Date getActualEndDate() {
 		return actualEndDate;
 	}
 
 
-	public void setActualEndDate(String actualEndDate) {
+	public void setActualEndDate(Date actualEndDate) {
 		this.actualEndDate = actualEndDate;
 	}
 
