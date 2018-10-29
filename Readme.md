@@ -1,34 +1,19 @@
-## Building a Full Stack Polls app similar to twitter polls with Spring Boot, Spring Security, JWT, React and Ant Design
+## Building a Full Stack  app similar to twitter  with Spring Boot, Spring Security, JWT, React and Ant Design
 
-### Live Demo
- 	 
-The application is hosted on AWS free tier. Check out the live demo at https://polls.callicoder.com
 
-### Tutorials
-
-I've written a complete tutorial series for this application on The CalliCoder Blog -
-
-+ [Part 1: Bootstrapping the Project and creating the basic domain models and repositories](https://www.callicoder.com/spring-boot-spring-security-jwt-mysql-react-app-part-1/)
-
-+ [Part 2: Configuring Spring Security along with JWT authentication and Building Rest APIs for Login and SignUp](https://www.callicoder.com/spring-boot-spring-security-jwt-mysql-react-app-part-2/)
-
-+ [Part 3: Building Rest APIs for creating Polls, voting for a choice in a Poll, retrieving user profile etc](https://www.callicoder.com/spring-boot-spring-security-jwt-mysql-react-app-part-3/)
-
-+ [Part 4: Building the front-end using React and Ant Design](https://www.callicoder.com/spring-boot-spring-security-jwt-mysql-react-app-part-4/)
-
-## Steps to Setup the Spring Boot Back end app (polling-app-server)
+## Steps to Setup the Spring Boot Back end app (app-server)
 
 1. **Clone the application**
 
 	```bash
-	git clone https://github.com/callicoder/spring-security-react-ant-design-polls-app.git
-	cd polling-app-server
+	git clone https://github.com/callicoder/spring-security-react-ant-design--app.git
+	cd app-server
 	```
 
 2. **Create MySQL database**
 
 	```bash
-	create database polling_app
+	create database reporting_app
 	```
 
 3. **Change MySQL username and password as per your MySQL installation**
@@ -51,7 +36,7 @@ I've written a complete tutorial series for this application on The CalliCoder B
 
 	```bash
 	mvn package
-	java -jar target/polls-0.0.1-SNAPSHOT.jar
+	java -jar target/-0.0.1-SNAPSHOT.jar
 	```
 5. **Add the default Roles**
 	
@@ -64,12 +49,12 @@ I've written a complete tutorial series for this application on The CalliCoder B
 
 	Any new user who signs up to the app is assigned the `ROLE_USER` by default.
 
-## Steps to Setup the React Front end app (polling-app-client)
+## Steps to Setup the React Front end app (app-client)
 
-First go to the `polling-app-client` folder -
+First go to the `app-client` folder -
 
 ```bash
-cd polling-app-client
+cd app-client
 ```
 
 Then type the following command to install the dependencies and start the application -
