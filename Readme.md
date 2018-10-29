@@ -6,7 +6,7 @@
 1. **Clone the application**
 
 	```bash
-	git clone https://github.com/callicoder/spring-security-react-ant-design--app.git
+	git clone https://github.com/nikhilmishra11/SpringBootReact.git
 	cd app-server
 	```
 
