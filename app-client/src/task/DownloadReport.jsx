@@ -16,13 +16,13 @@ class DownloadReport extends Component {
         super(props);
         this.state = {
         };
-        
-        
+
+
         this.handleSubmit = this.handleSubmit.bind(this);
         //this.isFormInvalid = this.isFormInvalid.bind(this);
     }
 
-    
+
 
     handleSubmit(event) {
         console.log('inside handle submit event');
@@ -35,11 +35,22 @@ class DownloadReport extends Component {
         //     pollLength: this.state.pollLength
         // };
 
-                   
+        let fileName = 'wsrautomator_generated.pptx';
         downloadReport()
             .then(response => {
-                this.props.history.push("/");
+                fileName = getFileNameByContentDisposition(response.headers.get('Content-Disposition'));
+                return response.blob();
+            })
+            .then(body => {
+                const blob = new File([body], fileName, { type: 'application/octet-stream' });
+                //const blob = new File([response], "filename.pptx", {type: 'application/octet-stream'});
+                const url = window.URL.createObjectURL(blob);
+                const anchor = document.createElement('a');
+                anchor.download = '' + fileName;
+                anchor.href = url;
+                anchor.click();
             }).catch(error => {
+                console.log(error);
                 if (error.status === 401) {
                     this.props.handleLogout('/login', 'error', 'You have been logged out. Please login create poll.');
                 } else {
@@ -53,7 +64,7 @@ class DownloadReport extends Component {
 
     }
 
-    
+
 
     render() {
         const choiceViews = [];
@@ -80,6 +91,17 @@ class DownloadReport extends Component {
     }
 }
 
+function getFileNameByContentDisposition(contentDisposition){
+    var regex = /filename[^;=\n]*=(UTF-8(['"]*))?(.*)/;
+    var matches = regex.exec(contentDisposition);
+    var filename;
+
+    if (matches != null && matches[3]) {
+        filename = matches[3].replace(/['"]/g, '');
+    }
+
+    return decodeURI(filename);
+}
 function PollChoice(props) {
     return (
         <FormItem validateStatus={props.choice.validateStatus}

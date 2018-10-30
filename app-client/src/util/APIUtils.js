@@ -23,6 +23,20 @@ const request = (options) => {
     );
 };
 
+const download = (options) => {
+    const headers = new Headers();
+    
+    if(localStorage.getItem(ACCESS_TOKEN)) {
+        headers.append('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN))
+    }
+
+    const defaults = {headers: headers};
+    options = Object.assign({}, defaults, options);
+
+    return fetch(options.url, options);
+};
+
+
 export function getAllPolls(page, size) {
     page = page || 0;
     size = size || POLL_LIST_SIZE;
@@ -50,11 +64,7 @@ export function createReport(reportData) {
 }
 
 export function downloadReport() {
-    return request({
-        url: API_BASE_URL + "/report/download",
-        method: 'POST',
-        body:''
-    });
+    return download({url: API_BASE_URL + "/report/download"});
 }
 
 
