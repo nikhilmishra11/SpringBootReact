@@ -23,28 +23,21 @@ import com.nat.wsr.model.TaskUpdates;
 import com.nat.wsr.model.User;
 import com.nat.wsr.payload.ReportRequest;
 import com.nat.wsr.security.UserPrincipal;
+import com.nat.wsr.web.component.SystemConfigComponent;
 import com.nat.wsr.web.repository.KeyUpdatesRepository;
-import com.nat.wsr.web.repository.PollRepository;
 import com.nat.wsr.web.repository.ReportsRepository;
 import com.nat.wsr.web.repository.TaskUpdatesRepository;
 import com.nat.wsr.web.repository.UserRepository;
-import com.nat.wsr.web.repository.VoteRepository;
 
 /**
  * 
- * @author tarun.leekha
+ * @author anupriya.gupta
  *
  */
 @Service
 public class WsrAutomatorService {
 
 	private String inputFilePath;
-
-	@Autowired
-	private PollRepository pollRepository;
-
-	@Autowired
-	private VoteRepository voteRepository;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -114,12 +107,11 @@ public class WsrAutomatorService {
 	
 	private void writeInputToFile(List<User> users,Long reportId) {
 		
-		this.setInputFilePath("C:\\Users\\tarun.leekha\\wsr_template\\wsr_template_v1.pptx");
-		System.out.println("Hello World!");
-		try (FileOutputStream out = new FileOutputStream(
-				"C:\\Users\\tarun.leekha\\wsr_template\\wsrautomator_generated.pptx")) {
+		String file = getClass().getClassLoader().getResource("template/wsr_template_v1.pptx").getFile();
+		this.setInputFilePath(file);
+		try (FileOutputStream out = new FileOutputStream(SystemConfigComponent.TEMP_PATH+File.separator+"wsrautomator_generated.pptx")) {
 			try {
-				//FileInputStream fileInputStream = new FileInputStream(new File(this.getInputFilePath()));
+				
 				final PptMapper pptMapper = new PptMapper();
 				List<KeyUpdates> keyUpdates = keyUpdatesRepository.findByReportsId(reportId);
 				List<TaskUpdates> taskUpdates = taskUpdatesRepository.findByReportsId(reportId);
