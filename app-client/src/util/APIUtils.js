@@ -175,3 +175,15 @@ export function getAllTasks(page, size) {
         method: 'GET'
     });
 }
+
+export function getFileNameByContentDisposition(contentDisposition){
+    var regex = /filename[^;=\n]*=(UTF-8(['"]*))?(.*)/;
+    var matches = regex.exec(contentDisposition);
+    var filename;
+
+    if (matches != null && matches[3]) {
+        filename = matches[3].replace(/['"]/g, '');
+    }
+
+    return decodeURI(filename);
+}

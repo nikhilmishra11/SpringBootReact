@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { createReport } from '../util/APIUtils';
 import { POLL_QUESTION_MAX_LENGTH, POLL_CHOICE_MAX_LENGTH } from '../constants';
 import './NewTask.css';
-import { Form, Input, Button, Icon, Select, Col, notification } from 'antd';
+import { Form, Input, Button, Icon, Select, notification } from 'antd';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 const Option = Select.Option;

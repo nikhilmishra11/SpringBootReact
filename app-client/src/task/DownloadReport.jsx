@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import { createPoll } from '../util/APIUtils';
-import { createReport } from '../util/APIUtils';
-import { downloadReport } from '../util/APIUtils';
-import { MAX_CHOICES, POLL_QUESTION_MAX_LENGTH, POLL_CHOICE_MAX_LENGTH } from '../constants';
+import { downloadReport, getFileNameByContentDisposition } from '../util/APIUtils';
 import './DownloadReport.css';
-import { Form, Input, Button, Icon, Select, Col, notification } from 'antd';
-import DatePicker from 'react-datepicker';
+import { Form, Input, Button, Icon, Select,  notification } from 'antd';
 import 'react-datepicker/dist/react-datepicker.css';
+import Datetime from 'react-datetime';
 const Option = Select.Option;
 const FormItem = Form.Item;
 const { TextArea } = Input
@@ -15,6 +12,12 @@ class DownloadReport extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            actualStartDate: {
+                text: ''
+            },
+            actualEndDate: {
+                text: ''
+            },
         };
 
 
@@ -76,12 +79,35 @@ class DownloadReport extends Component {
             <div className="new-poll-container">
                 <h1 className="page-title">Download Report</h1>
                 <div className="new-poll-content">
+                    <FormItem validateStatus={this.state.actualStartDate.validateStatus}
+                        help={this.state.actualStartDate.errorMsg} className="poll-form-row">
+                        <Datetime
+                            inputProps={{ placeholder: 'From Date', readonly: 'true' }}
+                            dateFormat="Do MMM YYYY"
+                            timeFormat={false}
+                            className="poll-form-row wsr-date-picker"
+                            value={this.state.actualStartDate.text}
+                            onChange={this.handleActualStartDateChange}
+                            closeOnSelect={true}
+                        />
+                    </FormItem>
+                    <FormItem validateStatus={this.state.actualEndDate.validateStatus}
+                        help={this.state.actualEndDate.errorMsg} className="poll-form-row">
+                        <Datetime
+                            inputProps={{ placeholder: 'To Date', readonly: 'true' }}
+                            dateFormat="Do MMM YYYY"
+                            timeFormat={false}
+                            className="poll-form-row wsr-date-picker"
+                            value={this.state.actualEndDate.text}
+                            onChange={this.handleActualEndDateChange}
+                            closeOnSelect={true}
+                        />
+                    </FormItem>
                     <Form onSubmit={this.handleSubmit} className="create-poll-form">
                         <FormItem className="poll-form-row">
                             <Button type="primary"
                                 htmlType="submit"
                                 size="large"
-                                //disabled={this.isFormInvalid()}
                                 className="create-poll-form-button">Download Report</Button>
                         </FormItem>
                     </Form>
@@ -91,17 +117,7 @@ class DownloadReport extends Component {
     }
 }
 
-function getFileNameByContentDisposition(contentDisposition){
-    var regex = /filename[^;=\n]*=(UTF-8(['"]*))?(.*)/;
-    var matches = regex.exec(contentDisposition);
-    var filename;
 
-    if (matches != null && matches[3]) {
-        filename = matches[3].replace(/['"]/g, '');
-    }
-
-    return decodeURI(filename);
-}
 function PollChoice(props) {
     return (
         <FormItem validateStatus={props.choice.validateStatus}
