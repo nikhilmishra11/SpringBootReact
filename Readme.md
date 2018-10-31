@@ -1,4 +1,4 @@
-## Building a Full Stack  app similar to twitter  with Spring Boot, Spring Security, JWT, React and Ant Design
+## Building a Full Stack  app with Spring Boot, Spring Security, JWT, React and Ant Design
 
 
 ## Steps to Setup the Spring Boot Back end app (app-server)
