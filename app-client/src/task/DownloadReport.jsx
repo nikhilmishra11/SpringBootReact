@@ -45,7 +45,7 @@ class DownloadReport extends Component {
                 return response.blob();
             })
             .then(body => {
-                const blob = new File([body], fileName, { type: 'application/octet-stream' });
+                const blob = new Blob([body], { type: 'application/octet-stream' });
                 //const blob = new File([response], "filename.pptx", {type: 'application/octet-stream'});
                 const url = window.URL.createObjectURL(blob);
                 const anchor = document.createElement('a');
